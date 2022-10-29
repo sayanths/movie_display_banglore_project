@@ -11,73 +11,100 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(children: [
+            LimitedBox(
+              maxHeight: size.height,
+              child: ListView.separated(
+                  itemBuilder: (context, index) {
+                    return CustomContainerUi(size: size);
+                  },
+                  separatorBuilder: (context, index) {
+                    return const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      child: Divider(
+                        height: 10,
+                      ),
+                    );
+                  },
+                  itemCount: 10),
+            )
+          ]),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomContainerUi extends StatelessWidget {
+  const CustomContainerUi({
+    Key? key,
+    required this.size,
+  }) : super(key: key);
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 0,
+      child: SizedBox(
+        height: size.height / 4.2,
+        width: size.width,
         child: Column(
           children: [
-            Card(
-              elevation: 10,
-              child: SizedBox(
-                height: size.height / 4.2,
-                width: size.width,
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Column(
-                          children: const [
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 8),
-                              child: Icon(Icons.arrow_upward_rounded),
-                            ),
-                            Text("sd"),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 8),
-                              child: Icon(Icons.arrow_downward),
-                            ),
-                            height10,
-                            Text("data")
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Image.asset(
-                            "assets/e.jpg",
-                            height: size.height / 6.5,
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Bond 25",
-                              style: gFontsSans(sz: 20),
-                            ),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            const CustomRichText(
-                                mainTitle: 'Genere :',
-                                subTitle: 'Action,acbdbd'),
-                            const CustomRichText(
-                                mainTitle: 'Genere :',
-                                subTitle: 'Action,acbdbd'),
-                            const CustomRichText(
-                                mainTitle: 'Genere :',
-                                subTitle: 'Action,acbdbd'),
-                            const Text("min | Enflis |2 Apr"),
-                            const Text("min | Enflis |2 Aprssdsd"),
-                          ],
-                        ),
-                      ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  children: const [
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8),
+                      child: Icon(Icons.arrow_upward_rounded),
                     ),
-                    SizedBox(
-                        width: size.width / 1.1,
-                        child: ElevatedButton(
-                            onPressed: () {}, child: const Text("sds")))
+                    Text("0"),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8),
+                      child: Icon(Icons.arrow_downward),
+                    ),
+                    height10,
+                    Text("Votes")
                   ],
                 ),
-              ),
+                Container(
+                  height: size.height / 6,
+                  width: size.width / 4,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      image: const DecorationImage(
+                          image: AssetImage("assets/e.jpg"))),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Bond 25",
+                      style: gFontsSans(sz: 20),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    const CustomRichText(
+                        mainTitle: 'Genere :', subTitle: 'Action,acbdbd'),
+                    const CustomRichText(
+                        mainTitle: 'Genere :', subTitle: 'Action,acbdbd'),
+                    const CustomRichText(
+                        mainTitle: 'Genere :', subTitle: 'Action,acbdbd'),
+                    const Text("min | Enflis |2 Apr"),
+                    const Text("min | Enflis |2 Aprssdsd"),
+                  ],
+                ),
+              ],
             ),
+            SizedBox(
+                width: size.width / 1.1,
+                child: ElevatedButton(
+                    onPressed: () {}, child: const Text("Watch Trailer")))
           ],
         ),
       ),
