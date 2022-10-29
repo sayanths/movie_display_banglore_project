@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_project_banglore/app/login_page/view/login_page.dart';
+import 'package:movie_project_banglore/app/home_page/view/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,8 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: MyLogin(),
+      home: HomePage(),
     );
   }
 }
