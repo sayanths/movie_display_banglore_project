@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:movie_project_banglore/app/home_page/view/home_page.dart';
+import 'package:movie_project_banglore/app/login_page/view/login_page.dart';
+import 'package:movie_project_banglore/app/login_page/view_model/login_page_controller.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider<LoginPageController>(create: (context) => LoginPageController(),)
+    ],
+    child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -14,7 +21,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: HomePage(),
+      home: MyLogin(),
     );
   }
 }
