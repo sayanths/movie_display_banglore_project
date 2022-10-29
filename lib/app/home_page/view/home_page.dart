@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie_project_banglore/app/core/fonts.dart';
+import 'package:movie_project_banglore/app/core/widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,20 +16,25 @@ class HomePage extends StatelessWidget {
             Card(
               elevation: 10,
               child: SizedBox(
-                height: size.height / 4.3,
+                height: size.height / 4.2,
                 width: size.width,
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      
                       children: [
                         Column(
-                          
                           children: const [
-                            Icon(Icons.arrow_back),
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 8),
+                              child: Icon(Icons.arrow_upward_rounded),
+                            ),
                             Text("sd"),
-                            Icon(Icons.arrow_back),
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 8),
+                              child: Icon(Icons.arrow_downward),
+                            ),
+                            height10,
                             Text("data")
                           ],
                         ),
@@ -40,21 +47,25 @@ class HomePage extends StatelessWidget {
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          
-                          children: const [
-                            Text("Bond 25"),
-                            SizedBox(height: 20,),
-                            CustomRichText(
+                          children: [
+                            Text(
+                              "Bond 25",
+                              style: gFontsSans(sz: 20),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            const CustomRichText(
                                 mainTitle: 'Genere :',
                                 subTitle: 'Action,acbdbd'),
-                            CustomRichText(
+                            const CustomRichText(
                                 mainTitle: 'Genere :',
                                 subTitle: 'Action,acbdbd'),
-                            CustomRichText(
+                            const CustomRichText(
                                 mainTitle: 'Genere :',
                                 subTitle: 'Action,acbdbd'),
-                            Text("min | Enflis |2 Apr"),
-                            Text("min | Enflis |2 Aprssdsd"),
+                            const Text("min | Enflis |2 Apr"),
+                            const Text("min | Enflis |2 Aprssdsd"),
                           ],
                         ),
                       ],
@@ -89,12 +100,12 @@ class CustomRichText extends StatelessWidget {
       text: TextSpan(
           text: mainTitle,
           style: const TextStyle(
-              color: Color.fromARGB(255, 85, 85, 85), fontSize: 10),
+              color: Colors.grey, fontSize: 15, fontWeight: FontWeight.w500),
           children: <TextSpan>[
             TextSpan(
               text: subTitle,
               style: const TextStyle(
-                  color: Color.fromARGB(255, 12, 12, 12), fontSize: 10),
+                  color: Color.fromARGB(255, 12, 12, 12), fontSize: 15),
             )
           ]),
     );
