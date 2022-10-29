@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_project_banglore/app/signup_page/view/sign_up.dart';
 
 class MyLogin extends StatefulWidget {
   const MyLogin({Key? key}) : super(key: key);
@@ -93,10 +94,15 @@ class _MyLoginState extends State<MyLogin> {
                             children: [
                               TextButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(context, 'register');
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const MyRegister(),
+                                      ));
                                 },
                                 style: const ButtonStyle(),
-                                child: Text(
+                                child: const Text(
                                   'Sign Up',
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
