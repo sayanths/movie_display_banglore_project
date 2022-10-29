@@ -11,46 +11,60 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Container(
-              height: size.height / 4.3,
-              width: size.width,
-              color: Colors.red,
-              child: Column(
-                children: [
-                  Row(
-                    children: [
-                      Column(
-                        children: const [
-                          Icon(Icons.arrow_back),
-                          Text("sd"),
-                          Icon(Icons.arrow_back),
-                          Text("data")
-                        ],
-                      ),
-                      Image.asset(
-                        "assets/e.jpg",
-                        height: size.height / 6,
-                      ),
-                      Column(
-                        children: const [
-                          Text("Bond 25"),
-                          CustomRichText(
-                              mainTitle: 'Genere :', subTitle: 'Action,acbdbd'),
-                          CustomRichText(
-                              mainTitle: 'Genere :', subTitle: 'Action,acbdbd'),
-                          CustomRichText(
-                              mainTitle: 'Genere :', subTitle: 'Action,acbdbd'),
-                          Text("min | Enflis |2 Apr"),
-                          Text("min | Enflis |2 Aprssdsd"),
-                        ],
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                      width: size.width / 1.1,
-                      child: ElevatedButton(
-                          onPressed: () {}, child: const Text("sds")))
-                ],
+            Card(
+              elevation: 10,
+              child: SizedBox(
+                height: size.height / 4.3,
+                width: size.width,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      
+                      children: [
+                        Column(
+                          
+                          children: const [
+                            Icon(Icons.arrow_back),
+                            Text("sd"),
+                            Icon(Icons.arrow_back),
+                            Text("data")
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Image.asset(
+                            "assets/e.jpg",
+                            height: size.height / 6.5,
+                          ),
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          
+                          children: const [
+                            Text("Bond 25"),
+                            SizedBox(height: 20,),
+                            CustomRichText(
+                                mainTitle: 'Genere :',
+                                subTitle: 'Action,acbdbd'),
+                            CustomRichText(
+                                mainTitle: 'Genere :',
+                                subTitle: 'Action,acbdbd'),
+                            CustomRichText(
+                                mainTitle: 'Genere :',
+                                subTitle: 'Action,acbdbd'),
+                            Text("min | Enflis |2 Apr"),
+                            Text("min | Enflis |2 Aprssdsd"),
+                          ],
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                        width: size.width / 1.1,
+                        child: ElevatedButton(
+                            onPressed: () {}, child: const Text("sds")))
+                  ],
+                ),
               ),
             ),
           ],
