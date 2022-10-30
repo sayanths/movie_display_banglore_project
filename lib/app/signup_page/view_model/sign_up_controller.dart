@@ -1,6 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:movie_project_banglore/app/signup_page/model/signup_model.dart';
 
 class SignUpPageController extends ChangeNotifier {
+  SignUpPageController() {
+    persondetails();
+  }
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final phoneNumberController = TextEditingController();
@@ -18,8 +25,8 @@ class SignUpPageController extends ChangeNotifier {
   }
 
   onPasswordValidate(String? value) {
-    if (value!.length < 6) {
-      return 'please enter atleast 6 characters';
+    if (value!.length < 5) {
+      return 'please enter atleast 5 characters';
     } else {
       return null;
     }
@@ -41,12 +48,6 @@ class SignUpPageController extends ChangeNotifier {
     }
   }
 
-  onPressed() {
-    if (signUpKey.currentState!.validate()) {
-      return null;
-    }
-  }
-
   List<String> jobs = <String>[
     'Developer',
     'Manager',
@@ -60,5 +61,44 @@ class SignUpPageController extends ChangeNotifier {
   onDropDownPress(String value) {
     dropDown = value;
     notifyListeners();
+  }
+
+  Future<void> persondetails() async {
+    final detailss = SigUpModel(
+        email: emailController.text.trim(),
+        name: nameController.text.trim(),
+        number: phoneNumberController.text.trim(),
+        password: passwordController.text.trim(),
+        profession: dropDown);
+    addPersonalDetails(detailss);
+  }
+
+  onPressed() {
+    if (signUpKey.currentState!.validate()) {
+      return persondetails();
+    } else {
+      log("sign up sucess");
+    }
+  }
+
+  List<SigUpModel> list = [];
+  Future<void> addPersonalDetails(SigUpModel detail) async {
+    final personDb = await Hive.openBox<SigUpModel>('person_db');
+    final id = await personDb.add(detail);
+    detail.id = id;
+    list.add(detail);
+    notifyListeners();
+    personDb.put(detail.id, detail);
+    notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    nameController.dispose();
+    passwordController.dispose();
+    phoneNumberController.dispose();
+    dropDown;
+    super.dispose();
   }
 }

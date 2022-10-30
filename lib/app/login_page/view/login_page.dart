@@ -69,10 +69,7 @@ class MyLogin extends StatelessWidget {
                                   child: IconButton(
                                       color: Colors.white,
                                       onPressed: () {
-                                        if (loginProvider.loginKey.currentState!
-                                            .validate()) {
-                                          return;
-                                        }
+                                        loginProvider.onPress();
                                       },
                                       icon: const Icon(
                                         Icons.arrow_forward,
