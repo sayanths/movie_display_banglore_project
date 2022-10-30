@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movie_project_banglore/app/home_page/view/home_page.dart';
 import 'package:movie_project_banglore/app/routes/routes.dart';
 import 'package:movie_project_banglore/app/signup_page/model/signup_model.dart';
@@ -24,7 +24,7 @@ class SignUpPageController extends ChangeNotifier {
   }
 
   onPasswordValidate(String? value) {
-    if (value!.length < 5) {
+    if (value!.length < 3) {
       return 'please enter atleast 5 characters';
     } else {
       return null;
@@ -32,7 +32,7 @@ class SignUpPageController extends ChangeNotifier {
   }
 
   onNumberValidate(String? value) {
-    if (value!.length != 10) {
+    if (value!.length <= 3) {
       return 'please enter Valid Number';
     } else {
       return null;
@@ -62,49 +62,58 @@ class SignUpPageController extends ChangeNotifier {
     notifyListeners();
   }
 
-  void persondetails() async {
-    final detailss = SigUpModel(
-        email: emailController.text.trim(),
-        name: nameController.text.trim(),
-        number: phoneNumberController.text.trim(),
-        password: passwordController.text.trim(),
-        profession: dropDown);
-    addPersonalDetails(detailss).then((value) {
-      clearTextFormField();
-      Routes.push(screen: const HomePage());
-    });
-
-    // Messenger.pop(msg: 'Sucessfull');
-  }
-
   onPressed() {
     if (signUpKey.currentState!.validate()) {
-      return persondetails();
+      final detailss = SigUpModel(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          email: emailController.text.trim(),
+          name: nameController.text.trim(),
+          number: phoneNumberController.text.trim(),
+          password: passwordController.text.trim(),
+          profession: dropDown);
+      addPersonalDetails(detailss);
+      refreshUi();
+      Routes.push(screen: const HomePage());
     }
+    // Messenger.pop(msg: 'Sucessfull');
   }
 
   List<SigUpModel> list = [];
   Future<void> addPersonalDetails(SigUpModel detail) async {
     var personDb = await Hive.openBox<SigUpModel>('person_db');
-    log(personDb.toString());
-    var id = await personDb.add(detail);
-    detail.id = id;
-    list.add(detail);
-    log(list.toString());
-    notifyListeners();
+    // log(personDb.toString());
+    // var id = await personDb.add(detail);
+    // detail.id = id;
+    // list.add(detail);
+    // log(list.toString());
+    //transactionDB.put(value.id, value);
     personDb.put(detail.id, detail);
+    refreshUi();
+  }
+
+  Future<List<SigUpModel>> getAll() async {
+    final allList = await Hive.openBox<SigUpModel>('person_db');
+    return allList.values.toList();
+  }
+
+  Future<void> refreshUi() async {
+    final allList = await getAll();
+    // list.clear();
+    log('===========');
+    list.addAll(allList);
+    log(list[0].name ?? 'hahhhaha');
     notifyListeners();
   }
 
-  @override
-  void dispose() {
-    emailController.dispose();
-    nameController.dispose();
-    passwordController.dispose();
-    phoneNumberController.dispose();
+  // @override
+  // void dispose() {
+  //   emailController.dispose();
+  //   nameController.dispose();
+  //   passwordController.dispose();
+  //   phoneNumberController.dispose();
 
-    super.dispose();
-  }
+  //   super.dispose();
+  // }
 
   clearTextFormField() {
     emailController.clear();

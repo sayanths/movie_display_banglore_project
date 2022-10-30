@@ -10,7 +10,7 @@ class MyRegister extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final singUpProvider = context.read<SignUpPageController>();
+    final singUpProvider = Provider.of<SignUpPageController>(context);
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(

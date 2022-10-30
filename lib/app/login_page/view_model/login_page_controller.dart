@@ -11,7 +11,7 @@ class LoginPageController extends ChangeNotifier {
   final passwordController = TextEditingController();
   final loginKey = GlobalKey<FormState>();
 
-   onNameValidate(String? value) {
+  onNameValidate(String? value) {
     if (value == null || value.isEmpty) {
       return 'please enter Correct  Name';
     } else {
@@ -29,20 +29,20 @@ class LoginPageController extends ChangeNotifier {
     }
   }
 
-  SigUpModel? modela;
-  loginToHomePage() {
-    if (nameController.text.trim() == modela?.name &&
-        passwordController.text.trim() == modela?.password) {
-      Routes.push(screen: const HomePage());
-      log("sdd");
-    } else {
-      Messenger.pop(msg: 'User not found');
-    }
-  }
-
-  onPress() {
+  //SigUpModel? modela;
+  onPress(List<SigUpModel> data, String nme, String pwd) async {
     if (loginKey.currentState!.validate()) {
-      return loginToHomePage();
+      for (var element in data) {
+        if (element.name == nameController.text &&
+            element.password == passwordController.text) {
+          Routes.push(screen: const HomePage());
+          log("successs");
+          return;
+        }
+      }
+      Messenger.pop(msg: 'User not found');
+    } else {
+      Messenger.pop(msg: 'validation Error');
     }
   }
 

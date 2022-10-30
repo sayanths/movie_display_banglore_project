@@ -17,7 +17,7 @@ class SigUpModelAdapter extends TypeAdapter<SigUpModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return SigUpModel(
-      id: fields[0] as int?,
+      id: fields[0] as String?,
       email: fields[2] as String?,
       name: fields[1] as String?,
       number: fields[4] as String?,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_project_banglore/app/core/widget.dart';
 import 'package:movie_project_banglore/app/login_page/view_model/login_page_controller.dart';
 import 'package:movie_project_banglore/app/signup_page/view/sign_up.dart';
+import 'package:movie_project_banglore/app/signup_page/view_model/sign_up_controller.dart';
 import 'package:provider/provider.dart';
 
 class MyLogin extends StatelessWidget {
@@ -9,7 +10,8 @@ class MyLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loginProvider = context.watch<LoginPageController>();
+    final loginProvider = Provider.of<LoginPageController>(context);
+    final signPro = Provider.of<SignUpPageController>(context);
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -69,7 +71,11 @@ class MyLogin extends StatelessWidget {
                                   child: IconButton(
                                       color: Colors.white,
                                       onPressed: () {
-                                        loginProvider.onPress();
+                                        loginProvider.onPress(
+                                            signPro.list,
+                                            loginProvider.nameController.text,
+                                            loginProvider
+                                                .passwordController.text);
                                       },
                                       icon: const Icon(
                                         Icons.arrow_forward,
