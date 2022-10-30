@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_project_banglore/app/login_page/view/login_page.dart';
+import 'package:movie_project_banglore/app/home_page/view/home_page.dart';
+import 'package:movie_project_banglore/app/home_page/view_model/home_page.dart';
 import 'package:movie_project_banglore/app/login_page/view_model/login_page_controller.dart';
 import 'package:movie_project_banglore/app/routes/message.dart';
 import 'package:movie_project_banglore/app/routes/routes.dart';
@@ -20,6 +21,9 @@ Future<void> main() async {
     ),
     ChangeNotifierProvider<SignUpPageController>(
       create: (context) => SignUpPageController(),
+    ),
+    ChangeNotifierProvider<HomeProvider>(
+      create: (context) => HomeProvider(),
     )
   ], child: const MyApp()));
 }
@@ -35,7 +39,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: Routes.navigatorKey,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: const MyLogin(),
+      home: const Home(),
     );
   }
 }

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:movie_project_banglore/app/core/fonts.dart';
 import 'package:movie_project_banglore/app/core/widget.dart';
+import 'package:movie_project_banglore/app/home_page/model/home_model.dart';
 
 class CustomContainerUi extends StatelessWidget {
+  final Result? datas;
   const CustomContainerUi({
     Key? key,
     required this.size,
+    this.datas,
   }) : super(key: key);
 
   final Size size;
@@ -23,18 +26,18 @@ class CustomContainerUi extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Column(
-                  children: const [
-                    Padding(
+                  children: [
+                    const Padding(
                       padding: EdgeInsets.symmetric(vertical: 8),
                       child: Icon(Icons.arrow_upward_rounded),
                     ),
-                    Text("0"),
-                    Padding(
+                    const Text("0"),
+                    const Padding(
                       padding: EdgeInsets.symmetric(vertical: 8),
                       child: Icon(Icons.arrow_downward),
                     ),
                     height10,
-                    Text("Votes")
+                    Text(datas!.voting.toString())
                   ],
                 ),
                 Container(
@@ -42,8 +45,8 @@ class CustomContainerUi extends StatelessWidget {
                   width: size.width / 4,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      image: const DecorationImage(
-                          image: AssetImage("assets/e.jpg"))),
+                      image: DecorationImage(
+                          image: NetworkImage(datas!.poster.toString()))),
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
