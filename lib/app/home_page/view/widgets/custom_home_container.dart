@@ -40,6 +40,7 @@ class CustomContainerUi extends StatelessWidget {
                     Text(datas!.voting.toString())
                   ],
                 ),
+                height10,
                 Container(
                   height: size.height / 6,
                   width: size.width / 4,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_project_banglore/app/core/fonts.dart';
+import 'package:movie_project_banglore/app/core/widget.dart';
 import 'package:movie_project_banglore/app/home_page/view/widgets/custom_home_container.dart';
 import 'package:movie_project_banglore/app/home_page/view_model/home_page.dart';
 
@@ -13,21 +14,18 @@ class Home extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     context.read<HomeProvider>().fetchDatas();
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-          foregroundColor: Colors.white,
-          backgroundColor: Theme.of(context).backgroundColor,
-          title: InkWell(
-              onTap: () {
-                // context.read<UserProvider>().accountInfo(context);
-              },
-              child: const Text("")),
+          backgroundColor: const Color.fromARGB(255, 96, 87, 0),
+          title: const Text("Movie App"),
           actions: [
-            ElevatedButton(
+            TextButton(
                 onPressed: () {
-                  context.read<HomeProvider>().companyinfo(context);
+                  context.read<HomeProvider>().companyinformation(context);
                 },
-                child: const Text("company info"))
+                child: Text(
+                  "company info",
+                  style: gFontsSans(cl: Colors.white),
+                ))
           ]),
       body: Consumer<HomeProvider>(
         builder: (context, value, child) {
@@ -64,7 +62,8 @@ class Home extends StatelessWidget {
                                     const Icon(
                                       Icons.arrow_drop_down_outlined,
                                       size: 60,
-                                    )
+                                    ),
+                                    const Text("Votes"),
                                   ],
                                 ),
                               )),
@@ -83,7 +82,8 @@ class Home extends StatelessWidget {
                           Expanded(
                             flex: 6,
                             child: Padding(
-                              padding: const EdgeInsets.all(16.0),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10, horizontal: 6),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -91,6 +91,7 @@ class Home extends StatelessWidget {
                                     value.movieData![index].title.toString(),
                                     style: gFontsSans(sz: 20),
                                   ),
+                                  height10,
                                   CustomRichText(
                                       mainTitle: 'Genere :',
                                       subTitle:
@@ -106,37 +107,17 @@ class Home extends StatelessWidget {
                                               .toString() ??
                                           ""),
                                   Text(
-                                    "min | Enflis |2 Apr",
-                                    style:
-                                        gFontsSans(cl: Colors.blue, sz: 13),
+                                    "Min| ${value.movieData![index].language}|Apr",
                                   ),
-                                  const Text("min | Enflis |2 Aprssdsd"),
+                                  Text(
+                                    " ${value.movieData![index].pageViews.toString()} views| Voted 1 people",
+                                    style: gFontsSans(cl: Colors.blue, sz: 13),
+                                  ),
                                 ],
                               ),
                             ),
                           ),
                         ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Row(
-                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                  "views : ${value.movieData?[index].pageViews.toString() ?? ""}"),
-                              const SizedBox(
-                                width: 30,
-                              ),
-                              Text(
-                                  value.movieData?[index].director
-                                              .join()
-                                              .isNotEmpty ==
-                                          true
-                                      ? "Director : ${value.movieData?[index].director.join().toString()}"
-                                      : "",
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w600)),
-                            ]),
                       ),
                       SizedBox(
                           width: size.width / 1.1,
