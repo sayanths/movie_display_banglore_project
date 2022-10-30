@@ -25,16 +25,16 @@ class MyRegister extends StatelessWidget {
         body: Stack(
           children: [
             Container(
-              padding: const EdgeInsets.only(left: 35, top: 15),
+              padding: const EdgeInsets.only(left: 35, top: 0),
               child: const Text(
                 'Create\nAccount',
-                style: TextStyle(color: Colors.white, fontSize: 33),
+                style: TextStyle(color: Colors.white, fontSize: 30),
               ),
             ),
             SingleChildScrollView(
               child: Container(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.18),
+                    top: MediaQuery.of(context).size.height * 0.15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -51,7 +51,7 @@ class MyRegister extends StatelessWidget {
                                 controller: singUpProvider.nameController,
                                 title: 'Name',
                                 obscureText: false),
-                            height30,
+                            height20,
                             CustomTextFormFiled(
                                 validator: (value) =>
                                     singUpProvider.onEmailValidate(value),
@@ -98,14 +98,14 @@ class MyRegister extends StatelessWidget {
                                     singUpProvider.phoneNumberController,
                                 title: 'Phone Number',
                                 obscureText: false),
-                            height30,
+                            height20,
                             CustomTextFormFiled(
                                 validator: (value) =>
                                     singUpProvider.onPasswordValidate(value),
                                 controller: singUpProvider.passwordController,
                                 title: 'Password',
                                 obscureText: true),
-                            height30,
+                            height20,
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -131,9 +131,7 @@ class MyRegister extends StatelessWidget {
                                 )
                               ],
                             ),
-                            const SizedBox(
-                              height: 40,
-                            ),
+                           
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
