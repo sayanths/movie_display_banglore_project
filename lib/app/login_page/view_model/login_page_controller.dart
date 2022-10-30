@@ -11,12 +11,9 @@ class LoginPageController extends ChangeNotifier {
   final passwordController = TextEditingController();
   final loginKey = GlobalKey<FormState>();
 
-  onEmailValidate(String? value) {
+   onNameValidate(String? value) {
     if (value == null || value.isEmpty) {
-      return 'please enter email';
-    } else if (!RegExp(r'^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$').hasMatch(value) ||
-        value.length < 3) {
-      return 'please enter valid email';
+      return 'please enter Correct  Name';
     } else {
       return null;
     }

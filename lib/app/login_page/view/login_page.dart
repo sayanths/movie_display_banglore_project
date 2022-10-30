@@ -41,7 +41,7 @@ class MyLogin extends StatelessWidget {
                           children: [
                             CustomTextFormFiled(
                                 validator: (value) =>
-                                    loginProvider.onEmailValidate(value),
+                                    loginProvider.onNameValidate(value),
                                 controller: loginProvider.nameController,
                                 title: 'Name',
                                 obscureText: false),
@@ -94,7 +94,6 @@ class MyLogin extends StatelessWidget {
                                     'Sign Up',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                        //  decoration: TextDecoration.underline,
                                         color:
                                             Color.fromARGB(255, 255, 255, 255),
                                         fontSize: 20),
@@ -105,7 +104,6 @@ class MyLogin extends StatelessWidget {
                                     child: const Text(
                                       'Forgot Password',
                                       style: TextStyle(
-                                        //  decoration: TextDecoration.underline,
                                         color: Color.fromARGB(255, 1, 15, 105),
                                         fontSize: 20,
                                       ),
