@@ -5,9 +5,6 @@ import 'package:hive/hive.dart';
 import 'package:movie_project_banglore/app/signup_page/model/signup_model.dart';
 
 class SignUpPageController extends ChangeNotifier {
-  SignUpPageController() {
-    persondetails();
-  }
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final phoneNumberController = TextEditingController();
@@ -71,22 +68,24 @@ class SignUpPageController extends ChangeNotifier {
         password: passwordController.text.trim(),
         profession: dropDown);
     addPersonalDetails(detailss);
+    //  Routes.push(screen: const HomePage());
+    // Messenger.pop(msg: 'Sucessfull');
   }
 
   onPressed() {
     if (signUpKey.currentState!.validate()) {
       return persondetails();
-    } else {
-      log("sign up sucess");
     }
   }
 
   List<SigUpModel> list = [];
   Future<void> addPersonalDetails(SigUpModel detail) async {
     final personDb = await Hive.openBox<SigUpModel>('person_db');
+    log(personDb.toString());
     final id = await personDb.add(detail);
     detail.id = id;
     list.add(detail);
+    log(list.toString());
     notifyListeners();
     personDb.put(detail.id, detail);
     notifyListeners();

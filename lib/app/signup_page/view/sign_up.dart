@@ -91,7 +91,7 @@ class MyRegister extends StatelessWidget {
                             ),
                             height20,
                             CustomTextFormFiled(
-                                textInputType: TextInputType.number,
+                                // textInputType: TextInputType.number,
                                 validator: (value) =>
                                     singUpProvider.onNumberValidate(value),
                                 controller:
@@ -131,7 +131,6 @@ class MyRegister extends StatelessWidget {
                                 )
                               ],
                             ),
-                           
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

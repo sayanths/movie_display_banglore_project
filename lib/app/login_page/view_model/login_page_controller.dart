@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:movie_project_banglore/app/home_page/view/home_page.dart';
 import 'package:movie_project_banglore/app/routes/message.dart';
@@ -12,7 +10,9 @@ class LoginPageController extends ChangeNotifier {
   final loginKey = GlobalKey<FormState>();
 
   onEmailValidate(String? value) {
-    if (!RegExp(r'^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$').hasMatch(value!) ||
+    if (value == null || value.isEmpty) {
+      return 'please enter email';
+    } else if (!RegExp(r'^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$').hasMatch(value) ||
         value.length < 3) {
       return 'please enter valid email';
     } else {
@@ -21,7 +21,9 @@ class LoginPageController extends ChangeNotifier {
   }
 
   onPasswordValidate(String? value) {
-    if (value!.length < 5) {
+    if (value == null || value.isEmpty) {
+      return 'please enter password';
+    } else if (value.length < 5) {
       return 'please enter atleast 5 characters';
     } else {
       return null;
