@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:movie_project_banglore/app/core/widget.dart';
+import 'package:movie_project_banglore/app/login_page/view/login_page.dart';
+import 'package:movie_project_banglore/app/signup_page/view_model/sign_up_controller.dart';
+import 'package:provider/provider.dart';
 
-class MyRegister extends StatefulWidget {
+class MyRegister extends StatelessWidget {
   const MyRegister({Key? key}) : super(key: key);
 
   @override
-  _MyRegisterState createState() => _MyRegisterState();
-}
-
-class _MyRegisterState extends State<MyRegister> {
-  @override
   Widget build(BuildContext context) {
+    final singUpProvider = context.read<SignUpPageController>();
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -24,7 +24,7 @@ class _MyRegisterState extends State<MyRegister> {
         body: Stack(
           children: [
             Container(
-              padding: const EdgeInsets.only(left: 35, top: 30),
+              padding: const EdgeInsets.only(left: 35, top: 15),
               child: const Text(
                 'Create\nAccount',
                 style: TextStyle(color: Colors.white, fontSize: 33),
@@ -33,87 +33,42 @@ class _MyRegisterState extends State<MyRegister> {
             SingleChildScrollView(
               child: Container(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * 0.28),
+                    top: MediaQuery.of(context).size.height * 0.18),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      margin: const EdgeInsets.only(left: 35, right: 35),
+                      margin: const EdgeInsets.only(left: 20, right: 35),
                       child: Column(
                         children: [
-                          TextField(
-                            style: const TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: const BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: const BorderSide(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                hintText: "Name",
-                                hintStyle: const TextStyle(color: Colors.white),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                )),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          TextField(
-                            style: const TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: const BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: const BorderSide(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                hintText: "Email",
-                                hintStyle: const TextStyle(color: Colors.white),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                )),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          TextField(
-                            style: const TextStyle(color: Colors.white),
-                            obscureText: true,
-                            decoration: InputDecoration(
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: const BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: const BorderSide(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                hintText: "Password",
-                                hintStyle: const TextStyle(color: Colors.white),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                )),
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
+                          CustomTextFormFiled(
+                              validator: (value) =>
+                                  singUpProvider.onEmailValidate(value),
+                              controller: singUpProvider.emailController,
+                              title: 'Name',
+                              obscureText: false),
+                          height30,
+                          CustomTextFormFiled(
+                              validator: (value) =>
+                                  singUpProvider.onEmailValidate(value),
+                              controller: singUpProvider.emailController,
+                              title: 'Email',
+                              obscureText: false),
+                          height30,
+                          CustomTextFormFiled(
+                              validator: (value) =>
+                                  singUpProvider.onEmailValidate(value),
+                              controller: singUpProvider.emailController,
+                              title: 'Phone Number',
+                              obscureText: false),
+                          height30,
+                          CustomTextFormFiled(
+                              validator: (value) =>
+                                  singUpProvider.onEmailValidate(value),
+                              controller: singUpProvider.emailController,
+                              title: 'Password',
+                              obscureText: false),
+                          height30,
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

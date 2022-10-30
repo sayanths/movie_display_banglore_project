@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_project_banglore/app/core/widget.dart';
 import 'package:movie_project_banglore/app/login_page/view_model/login_page_controller.dart';
+import 'package:movie_project_banglore/app/signup_page/view/sign_up.dart';
 import 'package:provider/provider.dart';
 
 class MyLogin extends StatelessWidget {
@@ -35,7 +36,7 @@ class MyLogin extends StatelessWidget {
                     Form(
                       key: loginProvider.loginKey,
                       child: Container(
-                        margin: const EdgeInsets.only(left: 35, right: 35),
+                        margin: const EdgeInsets.only(left: 25, right: 35),
                         child: Column(
                           children: [
                             CustomTextFormFiled(
@@ -52,6 +53,7 @@ class MyLogin extends StatelessWidget {
                                 title: 'password',
                                 obscureText: true),
                             height40,
+                            height10,
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -83,14 +85,20 @@ class MyLogin extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 TextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                      builder: (context) => const MyRegister(),
+                                    ));
+                                  },
                                   style: const ButtonStyle(),
                                   child: const Text(
                                     'Sign Up',
                                     textAlign: TextAlign.left,
                                     style: TextStyle(
-                                      //  decoration: TextDecoration.underline,
-                                        color: Color.fromARGB(255, 255, 255, 255),
+                                        //  decoration: TextDecoration.underline,
+                                        color:
+                                            Color.fromARGB(255, 255, 255, 255),
                                         fontSize: 20),
                                   ),
                                 ),
@@ -99,7 +107,7 @@ class MyLogin extends StatelessWidget {
                                     child: const Text(
                                       'Forgot Password',
                                       style: TextStyle(
-                                      //  decoration: TextDecoration.underline,
+                                        //  decoration: TextDecoration.underline,
                                         color: Color.fromARGB(255, 1, 15, 105),
                                         fontSize: 20,
                                       ),
@@ -126,17 +134,20 @@ class CustomTextFormFiled extends StatelessWidget {
   final String? Function(String?)? validator;
   final String title;
   final bool obscureText;
-  const CustomTextFormFiled({
-    Key? key,
-    required this.controller,
-    this.validator,
-    required this.title,
-    required this.obscureText,
-  }) : super(key: key);
+  TextInputType? textInputType;
+  CustomTextFormFiled(
+      {Key? key,
+      required this.controller,
+      this.validator,
+      required this.title,
+      required this.obscureText,
+      this.textInputType})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: textInputType,
       obscureText: obscureText,
       controller: controller,
       validator: validator,
