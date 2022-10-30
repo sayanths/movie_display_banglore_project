@@ -38,8 +38,8 @@ class MyApp extends StatelessWidget {
       scaffoldMessengerKey: Messenger.rootScaffoldMessengerKey,
       navigatorKey: Routes.navigatorKey,
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: const Home(),
+      title: 'Flutter movie app',
+      home: const HomePage(),
     );
   }
 }

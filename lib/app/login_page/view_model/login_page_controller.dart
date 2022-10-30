@@ -34,7 +34,7 @@ class LoginPageController extends ChangeNotifier {
   loginToHomePage() {
     if (emailController.text == model?.email &&
         passwordController.text == model?.password) {
-      Routes.push(screen:  Home());
+      Routes.push(screen:  HomePage());
     } else {
       Messenger.pop(msg: 'User not found');
     }

@@ -3,11 +3,10 @@ import 'package:movie_project_banglore/app/core/fonts.dart';
 import 'package:movie_project_banglore/app/core/widget.dart';
 import 'package:movie_project_banglore/app/home_page/view/widgets/custom_home_container.dart';
 import 'package:movie_project_banglore/app/home_page/view_model/home_page.dart';
-
 import 'package:provider/provider.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
