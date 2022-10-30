@@ -80,9 +80,9 @@ class SignUpPageController extends ChangeNotifier {
 
   List<SigUpModel> list = [];
   Future<void> addPersonalDetails(SigUpModel detail) async {
-    final personDb = await Hive.openBox<SigUpModel>('person_db');
+    var personDb = await Hive.openBox<SigUpModel>('person_db');
     log(personDb.toString());
-    final id = await personDb.add(detail);
+    var id = await personDb.add(detail);
     detail.id = id;
     list.add(detail);
     log(list.toString());

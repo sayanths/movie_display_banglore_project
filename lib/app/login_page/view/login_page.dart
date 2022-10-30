@@ -9,7 +9,7 @@ class MyLogin extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loginProvider = context.read<LoginPageController>();
+    final loginProvider = context.watch<LoginPageController>();
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
