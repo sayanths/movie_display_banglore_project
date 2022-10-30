@@ -6,6 +6,7 @@ class SignUpPageController extends ChangeNotifier {
   final phoneNumberController = TextEditingController();
   final passwordController = TextEditingController();
   final signUpKey = GlobalKey<FormState>();
+  String dropDown = 'Developer';
 
   onEmailValidate(String? value) {
     if (!RegExp(r'^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$').hasMatch(value!) ||
@@ -44,5 +45,20 @@ class SignUpPageController extends ChangeNotifier {
     if (signUpKey.currentState!.validate()) {
       return null;
     }
+  }
+
+  List<String> jobs = <String>[
+    'Developer',
+    'Manager',
+    'Doctor',
+    'Engineer',
+    'normal worker',
+    'Atrist',
+    'Actor',
+  ];
+
+  onDropDownPress(String value) {
+    dropDown = value;
+    notifyListeners();
   }
 }

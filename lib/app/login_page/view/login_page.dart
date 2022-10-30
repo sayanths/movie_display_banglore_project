@@ -81,6 +81,7 @@ class MyLogin extends StatelessWidget {
                               ],
                             ),
                             height40,
+                            height30,
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

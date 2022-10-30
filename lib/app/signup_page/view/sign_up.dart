@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_project_banglore/app/core/fonts.dart';
 import 'package:movie_project_banglore/app/core/widget.dart';
 import 'package:movie_project_banglore/app/login_page/view/login_page.dart';
 import 'package:movie_project_banglore/app/signup_page/view_model/sign_up_controller.dart';
@@ -57,7 +58,38 @@ class MyRegister extends StatelessWidget {
                                 controller: singUpProvider.emailController,
                                 title: 'Email',
                                 obscureText: false),
-                            height30,
+                            height20,
+                            Consumer<SignUpPageController>(
+                              builder: (context, signUpvalue, _) {
+                                return Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text("Select Profession",
+                                        style: gFontsSans(
+                                            cl: Colors.white, sz: 20)),
+                                    DropdownButton<String>(
+                                      dropdownColor: Colors.black,
+                                      value: signUpvalue.dropDown,
+                                      items: signUpvalue.jobs.map((String e) {
+                                        return DropdownMenuItem(
+                                            value: e,
+                                            child: Text(
+                                              e,
+                                              style: gFontsSans(
+                                                cl: Colors.white,
+                                              ),
+                                            ));
+                                      }).toList(),
+                                      onChanged: (value) {
+                                        signUpvalue.onDropDownPress(value!);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            ),
+                            height20,
                             CustomTextFormFiled(
                                 textInputType: TextInputType.number,
                                 validator: (value) =>
@@ -110,13 +142,16 @@ class MyRegister extends StatelessWidget {
                                     Navigator.pushNamed(context, 'login');
                                   },
                                   style: const ButtonStyle(),
-                                  child: const Text(
-                                    'Sign In',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                        decoration: TextDecoration.underline,
-                                        color: Colors.white,
-                                        fontSize: 18),
+                                  child: InkWell(
+                                    onTap: () => Navigator.pop(context),
+                                    child: const Text(
+                                      'Sign In',
+                                      textAlign: TextAlign.left,
+                                      style: TextStyle(
+                                          decoration: TextDecoration.underline,
+                                          color: Colors.white,
+                                          fontSize: 18),
+                                    ),
                                   ),
                                 ),
                               ],
