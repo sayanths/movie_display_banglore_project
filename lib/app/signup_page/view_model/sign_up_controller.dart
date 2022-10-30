@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:movie_project_banglore/app/home_page/view/home_page.dart';
+import 'package:movie_project_banglore/app/routes/routes.dart';
 import 'package:movie_project_banglore/app/signup_page/model/signup_model.dart';
 
 class SignUpPageController extends ChangeNotifier {
@@ -60,15 +62,18 @@ class SignUpPageController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> persondetails() async {
+  void persondetails() async {
     final detailss = SigUpModel(
         email: emailController.text.trim(),
         name: nameController.text.trim(),
         number: phoneNumberController.text.trim(),
         password: passwordController.text.trim(),
         profession: dropDown);
-    addPersonalDetails(detailss);
-    //  Routes.push(screen: const HomePage());
+    addPersonalDetails(detailss).then((value) {
+      clearTextFormField();
+      Routes.push(screen: const HomePage());
+    });
+
     // Messenger.pop(msg: 'Sucessfull');
   }
 
@@ -97,7 +102,14 @@ class SignUpPageController extends ChangeNotifier {
     nameController.dispose();
     passwordController.dispose();
     phoneNumberController.dispose();
-    dropDown;
+
     super.dispose();
+  }
+
+  clearTextFormField() {
+    emailController.clear();
+    nameController.clear();
+    passwordController.clear();
+    phoneNumberController.clear();
   }
 }

@@ -14,6 +14,7 @@ class HomePage extends StatelessWidget {
     context.read<HomeProvider>().fetchDatas();
     return Scaffold(
       appBar: AppBar(
+          leading: const Text(''),
           backgroundColor: const Color.fromARGB(255, 96, 87, 0),
           title: const Text("Movie App"),
           actions: [

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:movie_project_banglore/app/home_page/view/home_page.dart';
 import 'package:movie_project_banglore/app/routes/message.dart';
@@ -5,7 +7,7 @@ import 'package:movie_project_banglore/app/routes/routes.dart';
 import 'package:movie_project_banglore/app/signup_page/model/signup_model.dart';
 
 class LoginPageController extends ChangeNotifier {
-  final emailController = TextEditingController();
+  final nameController = TextEditingController();
   final passwordController = TextEditingController();
   final loginKey = GlobalKey<FormState>();
 
@@ -30,11 +32,12 @@ class LoginPageController extends ChangeNotifier {
     }
   }
 
-  SigUpModel? model;
+  SigUpModel? modela;
   loginToHomePage() {
-    if (emailController.text == model?.email &&
-        passwordController.text == model?.password) {
-      Routes.push(screen:  HomePage());
+    if (nameController.text.trim() == modela?.name &&
+        passwordController.text.trim() == modela?.password) {
+      Routes.push(screen: const HomePage());
+      log("sdd");
     } else {
       Messenger.pop(msg: 'User not found');
     }
@@ -48,7 +51,7 @@ class LoginPageController extends ChangeNotifier {
 
   @override
   void dispose() {
-    emailController.dispose();
+    nameController.dispose();
     passwordController.dispose();
     super.dispose();
   }

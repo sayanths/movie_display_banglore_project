@@ -42,8 +42,8 @@ class MyLogin extends StatelessWidget {
                             CustomTextFormFiled(
                                 validator: (value) =>
                                     loginProvider.onEmailValidate(value),
-                                controller: loginProvider.emailController,
-                                title: 'Email',
+                                controller: loginProvider.nameController,
+                                title: 'Name',
                                 obscureText: false),
                             height30,
                             CustomTextFormFiled(
