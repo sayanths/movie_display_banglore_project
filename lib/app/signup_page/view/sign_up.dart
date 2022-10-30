@@ -37,83 +37,92 @@ class MyRegister extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      margin: const EdgeInsets.only(left: 20, right: 35),
-                      child: Column(
-                        children: [
-                          CustomTextFormFiled(
-                              validator: (value) =>
-                                  singUpProvider.onEmailValidate(value),
-                              controller: singUpProvider.emailController,
-                              title: 'Name',
-                              obscureText: false),
-                          height30,
-                          CustomTextFormFiled(
-                              validator: (value) =>
-                                  singUpProvider.onEmailValidate(value),
-                              controller: singUpProvider.emailController,
-                              title: 'Email',
-                              obscureText: false),
-                          height30,
-                          CustomTextFormFiled(
-                              validator: (value) =>
-                                  singUpProvider.onEmailValidate(value),
-                              controller: singUpProvider.emailController,
-                              title: 'Phone Number',
-                              obscureText: false),
-                          height30,
-                          CustomTextFormFiled(
-                              validator: (value) =>
-                                  singUpProvider.onEmailValidate(value),
-                              controller: singUpProvider.emailController,
-                              title: 'Password',
-                              obscureText: false),
-                          height30,
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const Text(
-                                'Sign Up',
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 27,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                              CircleAvatar(
-                                radius: 30,
-                                backgroundColor: const Color(0xff4c505b),
-                                child: IconButton(
-                                    color: Colors.white,
-                                    onPressed: () {},
-                                    icon: const Icon(
-                                      Icons.arrow_forward,
-                                    )),
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, 'login');
-                                },
-                                style: const ButtonStyle(),
-                                child: const Text(
-                                  'Sign In',
-                                  textAlign: TextAlign.left,
+                    Form(
+                      key: singUpProvider.signUpKey,
+                      child: Container(
+                        margin: const EdgeInsets.only(left: 20, right: 35),
+                        child: Column(
+                          children: [
+                            CustomTextFormFiled(
+                                textInputType: TextInputType.name,
+                                validator: (value) =>
+                                    singUpProvider.onNameValidate(value),
+                                controller: singUpProvider.nameController,
+                                title: 'Name',
+                                obscureText: false),
+                            height30,
+                            CustomTextFormFiled(
+                                validator: (value) =>
+                                    singUpProvider.onEmailValidate(value),
+                                controller: singUpProvider.emailController,
+                                title: 'Email',
+                                obscureText: false),
+                            height30,
+                            CustomTextFormFiled(
+                                textInputType: TextInputType.number,
+                                validator: (value) =>
+                                    singUpProvider.onNumberValidate(value),
+                                controller:
+                                    singUpProvider.phoneNumberController,
+                                title: 'Phone Number',
+                                obscureText: false),
+                            height30,
+                            CustomTextFormFiled(
+                                validator: (value) =>
+                                    singUpProvider.onPasswordValidate(value),
+                                controller: singUpProvider.passwordController,
+                                title: 'Password',
+                                obscureText: true),
+                            height30,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'Sign Up',
                                   style: TextStyle(
-                                      decoration: TextDecoration.underline,
                                       color: Colors.white,
-                                      fontSize: 18),
+                                      fontSize: 27,
+                                      fontWeight: FontWeight.w700),
                                 ),
-                              ),
-                            ],
-                          )
-                        ],
+                                CircleAvatar(
+                                  radius: 30,
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 205, 251, 0),
+                                  child: IconButton(
+                                      color: Colors.black,
+                                      onPressed: () {
+                                        singUpProvider.onPressed();
+                                      },
+                                      icon: const Icon(
+                                        Icons.arrow_forward,
+                                      )),
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 40,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, 'login');
+                                  },
+                                  style: const ButtonStyle(),
+                                  child: const Text(
+                                    'Sign In',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        color: Colors.white,
+                                        fontSize: 18),
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                     )
                   ],
