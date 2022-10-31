@@ -3,6 +3,7 @@ import 'package:movie_project_banglore/app/core/fonts.dart';
 import 'package:movie_project_banglore/app/core/widget.dart';
 import 'package:movie_project_banglore/app/home_page/view/widgets/custom_home_container.dart';
 import 'package:movie_project_banglore/app/home_page/view_model/home_page.dart';
+import 'package:movie_project_banglore/app/login_page/view/login_page.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,20 +14,45 @@ class HomePage extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     context.read<HomeProvider>().fetchDatas();
     return Scaffold(
+      drawer: Drawer(
+        child: Column(
+          children: [
+            Container(
+              height: 200,
+              color: Colors.brown,
+            ),
+            Center(
+              child: ElevatedButton(
+                  onPressed: () {
+                    context.read<HomeProvider>().companyinformation(context);
+                  },
+                  child: Text(
+                    "company info",
+                    style: gFontsSans(cl: Colors.black),
+                  )),
+            )
+          ],
+        ),
+      ),
       appBar: AppBar(
-          leading: const Text(''),
-          backgroundColor: const Color.fromARGB(255, 96, 87, 0),
-          title: const Text("Movie App"),
-          actions: [
-            TextButton(
-                onPressed: () {
-                  context.read<HomeProvider>().companyinformation(context);
-                },
-                child: Text(
-                  "company info",
-                  style: gFontsSans(cl: Colors.white),
-                ))
-          ]),
+        backgroundColor: const Color.fromARGB(255, 96, 87, 0),
+        title: const Text("Movie App"),
+        actions: [
+          TextButton(
+              onPressed: () {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const MyLogin(),
+                    ),
+                    (route) => false);
+              },
+              child: const Text(
+                "Log out",
+                style: TextStyle(color: Colors.yellow),
+              ))
+        ],
+      ),
       body: Consumer<HomeProvider>(
         builder: (context, value, child) {
           if (value.movieData == null) {

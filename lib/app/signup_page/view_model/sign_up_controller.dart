@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:movie_project_banglore/app/home_page/view/home_page.dart';
+import 'package:movie_project_banglore/app/routes/message.dart';
 import 'package:movie_project_banglore/app/routes/routes.dart';
 import 'package:movie_project_banglore/app/signup_page/model/signup_model.dart';
 
@@ -71,20 +70,16 @@ class SignUpPageController extends ChangeNotifier {
           number: phoneNumberController.text.trim(),
           password: passwordController.text.trim(),
           profession: dropDown);
-     await addPersonalDetails(detailss);
+      await addPersonalDetails(detailss);
       Routes.push(screen: const HomePage());
+      Messenger.pop(msg: 'Sucessfull');
     }
-    // Messenger.pop(msg: 'Sucessfull');
   }
-
 
   Future<void> addPersonalDetails(SigUpModel detail) async {
     var personDb = await Hive.openBox<SigUpModel>('person_db');
     personDb.put(detail.id, detail);
   }
-
-
- 
 
   clearTextFormField() {
     emailController.clear();
