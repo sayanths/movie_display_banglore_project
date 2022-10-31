@@ -62,7 +62,7 @@ class SignUpPageController extends ChangeNotifier {
     notifyListeners();
   }
 
-  onPressed() {
+  onPressed() async {
     if (signUpKey.currentState!.validate()) {
       final detailss = SigUpModel(
           id: DateTime.now().millisecondsSinceEpoch.toString(),
@@ -71,49 +71,20 @@ class SignUpPageController extends ChangeNotifier {
           number: phoneNumberController.text.trim(),
           password: passwordController.text.trim(),
           profession: dropDown);
-      addPersonalDetails(detailss);
-      refreshUi();
+     await addPersonalDetails(detailss);
       Routes.push(screen: const HomePage());
     }
     // Messenger.pop(msg: 'Sucessfull');
   }
 
-  List<SigUpModel> list = [];
+
   Future<void> addPersonalDetails(SigUpModel detail) async {
     var personDb = await Hive.openBox<SigUpModel>('person_db');
-    // log(personDb.toString());
-    // var id = await personDb.add(detail);
-    // detail.id = id;
-    // list.add(detail);
-    // log(list.toString());
-    //transactionDB.put(value.id, value);
     personDb.put(detail.id, detail);
-    refreshUi();
   }
 
-  Future<List<SigUpModel>> getAll() async {
-    final allList = await Hive.openBox<SigUpModel>('person_db');
-    return allList.values.toList();
-  }
 
-  Future<void> refreshUi() async {
-    final allList = await getAll();
-    // list.clear();
-    log('===========');
-    list.addAll(allList);
-    log(list[0].name ?? 'hahhhaha');
-    notifyListeners();
-  }
-
-  // @override
-  // void dispose() {
-  //   emailController.dispose();
-  //   nameController.dispose();
-  //   passwordController.dispose();
-  //   phoneNumberController.dispose();
-
-  //   super.dispose();
-  // }
+ 
 
   clearTextFormField() {
     emailController.clear();

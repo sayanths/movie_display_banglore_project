@@ -11,6 +11,7 @@ class MyLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginProvider = Provider.of<LoginPageController>(context);
+    loginProvider.getAll();
     final signPro = Provider.of<SignUpPageController>(context);
     return Container(
       decoration: const BoxDecoration(
@@ -71,11 +72,7 @@ class MyLogin extends StatelessWidget {
                                   child: IconButton(
                                       color: Colors.white,
                                       onPressed: () {
-                                        loginProvider.onPress(
-                                            signPro.list,
-                                            loginProvider.nameController.text,
-                                            loginProvider
-                                                .passwordController.text);
+                                        loginProvider.onPress();
                                       },
                                       icon: const Icon(
                                         Icons.arrow_forward,
