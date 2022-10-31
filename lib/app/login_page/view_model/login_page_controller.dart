@@ -21,7 +21,7 @@ class LoginPageController extends ChangeNotifier {
   onPasswordValidate(String? value) {
     if (value == null || value.isEmpty) {
       return 'please enter password';
-    } else if (value.length < 5) {
+    } else if (value.length < 8) {
       return 'please enter atleast 5 characters';
     } else {
       return null;

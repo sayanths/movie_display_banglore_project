@@ -31,7 +31,7 @@ class SignUpPageController extends ChangeNotifier {
   }
 
   onNumberValidate(String? value) {
-    if (value!.length <= 3) {
+    if (value!.length != 10) {
       return 'please enter Valid Number';
     } else {
       return null;
